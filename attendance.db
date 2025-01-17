@@ -1,0 +1,17 @@
+from app import db, Professor, Student
+from werkzeug.security import generate_password_hash
+
+db.create_all()
+
+# Add a sample professor
+professor = Professor(email="test@college.com", password=generate_password_hash("password123"))
+db.session.add(professor)
+
+# Add some sample students
+student1 = Student(name="Raj Modi", division="Div A")
+student2 = Student(name="Arnav Khanna", division="Div B")
+db.session.add(student1)
+db.session.add(student2)
+
+db.session.commit()
+exit()

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #B22B27;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    label {
+      font-size: 16px;
+      color: #333;
+    }
+
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #B22B27;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    .response-message {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Professor Dashboard</h1>
+  </header>
+
+  <div class="container">
+    <h2>Mark Student Attendance</h2>
+
+    <form id="attendance-form">
+      <label for="division">Select Division:</label>
+      <select id="division" name="division">
+        <option value="Div A">Divison A</option>
+        <option value="Div B">Divison B</option>
+      </select>
+      <label for="student">Select Student:</label>
+      <select id="student" name="student">
+      </select>
+      <label for="status">Mark Attendance:</label>
+      <select id="status" name="status">
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+      </select>
+
+      <button type="submit">Submit Attendance</button>
+    </form>
+  <script>
+  
+    const divisionSelect = document.getElementById('division');
+    const studentSelect = document.getElementById('student');
+
+    const studentsData = {
+      'Div A': ['Krish', 'Ram', 'Shubh'],
+      'Div B': ['Durvesh', 'Harsh', 'Purav']
+    };
+
+
+    function updateStudentList() {
+      const selectedDivision = divisionSelect.value;
+      studentSelect.innerHTML = ''; // Clear existing options
+      const students = studentsData[selectedDivision];
+
+
+      students.forEach(student => {
+        const option = document.createElement('option');
+        option.value = student;
+        option.textContent = student;
+        studentSelect.appendChild(option);
+      });
+    }
+
+    divisionSelect.addEventListener('change', updateStudentList);
+
+    updateStudentList();
+
+    document.getElementById('attendance-form').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const division = divisionSelect.value;
+      const student = studentSelect.value;
+      const status = document.getElementById('status').value;
+
+    });
+  </script>
+</body>
+</html>
